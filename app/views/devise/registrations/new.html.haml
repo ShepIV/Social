@@ -1,0 +1,36 @@
+%body.bg
+  .container
+    %h1.title.text-center Sign up
+    .row.text-center
+      .main-login.main-center
+        = form_for(resource, as: resource_name, url: user_registration_path) do |f|
+          = devise_error_messages!
+          .field.text-center
+            = f.label :email
+            %br/
+            = f.email_field :email, autofocus: true
+          .field.text-center
+            = f.label :password
+            - if @minimum_password_length
+              %em
+                (#{@minimum_password_length} characters minimum)
+            %br/
+            = f.password_field :password, autocomplete: "off"
+          .field.text-center
+            = f.label :password_confirmation
+            %br/
+            = f.password_field :password_confirmation, autocomplete: "off"
+
+          = f.fields_for :profile_attributes, resource.build_profile do |f|
+            .field
+              = f.label :first_name
+              %br/
+              = f.text_field :first_name
+            .field
+              = f.label :last_name
+              %br/
+              = f.text_field :last_name
+            .actions.text-center
+              = f.submit "Sign up"
+              = render "devise/shared/links"
+

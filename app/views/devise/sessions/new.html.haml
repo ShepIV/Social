@@ -1,0 +1,22 @@
+%body.bg
+  .container
+    %h1.title.text-center login
+    .row.text-center
+      .main-login.main-center
+        = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+
+          .field.text-center
+            = f.label :email
+            %br/
+            = f.email_field :email, autofocus: true
+          .field.text-center
+            = f.label :password
+            %br/
+            = f.password_field :password, autocomplete: "off"
+          - if devise_mapping.rememberable?
+            .field.text-center
+              = f.check_box :remember_me
+              = f.label :remember_me
+          .actions.text-center
+            = f.submit "Log in"
+            = render "devise/shared/links"

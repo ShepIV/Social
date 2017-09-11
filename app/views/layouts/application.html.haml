@@ -1,0 +1,37 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Social
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  %body
+    %nav.navbar.navbar-inverse
+      .container-fluid
+        .navbar-header
+          %a.navbar-brand{:href => "#"} WebSiteName
+        %ul.nav.navbar-nav
+          %li.active
+            %a{:href => "#"} Home
+          %li
+            %a{:href => "#"} Page 1
+          %li
+            %a{:href => "#"} Page 2
+        %ul.nav.navbar-nav.navbar-right
+          - if user_signed_in?
+            %li
+              - if user_signed_in?
+                = link_to 'Выйти', destroy_user_session_path, method: :delete
+                %span.glyphicon.glyphicon-log-in
+          - else
+            %li
+              %a{:href => "#"}
+                %span.glyphicon.glyphicon-user
+                Sign Up
+            %li
+              - if user_signed_in?
+                = link_to 'Выйти', destroy_user_session_path, method: :delete
+                %span.glyphicon.glyphicon-log-in
+                Login
+    = yield
