@@ -13,7 +13,8 @@
           %a.navbar-brand{:href => "#"} WebSiteName
         %ul.nav.navbar-nav
           %li.active
-            %a= link_to 'profile', user_path
+            - if user_signed_in?
+              %a= link_to 'profile', user_path(current_user.id)
           %li
             %a{:href => "#"} Page 1
           %li
