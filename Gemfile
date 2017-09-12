@@ -20,6 +20,12 @@ gem 'haml-rails', '~> 1.0'
 gem 'devise'
 
 gem 'jquery-rails'
+
+gem 'carrierwave'
+
+gem 'mini_magick'
+
+gem 'bootstrap_form'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets

@@ -1,0 +1,62 @@
+%body
+  .container
+    .row
+      .col-md-10
+        .main-login.main-center
+          = form_for @user, html: { multipart: true } do |f|
+            .field.form-group
+              = f.label :email, class: 'col-md-4 control-label'
+            .input-group
+              .input-group-addon
+                %i.glyphicon.glyphicon-envelope
+              = f.text_field :email, class: 'form-control input-md'
+
+            = f.fields_for :profile do |f2|
+              .field.form-group
+                = f2.label :first_name, class: 'col-md-4 control-label'
+              .input-group
+                .input-group-addon
+                  %i.glyphicon.glyphicon-user
+                = f2.text_field :first_name, class: 'form-control input-md'
+
+              .field.form-group
+                = f2.label :last_name, class: 'col-md-4 control-label'
+              .input-group
+                .input-group-addon
+                  %i.glyphicon.glyphicon-user
+                = f2.text_field :last_name, class: 'form-control input-md'
+
+              .field.form-group
+                = f2.label :bd, class: 'col-md-4 control-label'
+              .input-group.date
+                .input-group-addon
+                  %i.glyphicon.glyphicon-calendar
+                = f2.date_field :bd, class: 'form-control input-md'
+
+              .field.form-group
+                = f2.label :interests, class: 'col-md-4 control-label'
+              .input-group
+                .input-group-addon
+                  %i.glyphicon.glyphicon-heart-empty
+                = f2.text_field :interests, class: 'form-control input-md'
+
+              .field.form-group
+                = f2.label :telephone, class: 'col-md-4 control-label'
+              .input-group
+                .input-group-addon
+                  %i.glyphicon.glyphicon-phone
+                = f2.phone_field :telephone, class: 'form-control input-md'
+
+              .field.form-group
+                = f2.label :about, class: 'col-md-4 control-label'
+              .input-group
+                .input-group-addon
+                  %i.glyphicon.glyphicon-pencil
+                = f2.text_area :about, class: 'form-control input-md'
+
+              .field.form-group.text-center
+                = f2.label :avatar
+                = f2.file_field :avatar, class: 'edit-img'
+
+              .actions.text-center
+                = f2.submit 'Save'

@@ -7,5 +7,7 @@ class User < ApplicationRecord
          :validatable
 
   has_one :profile, dependent: :destroy
-  accepts_nested_attributes_for :profile
+  # after_create :profile
+  accepts_nested_attributes_for :profile, update_only: true
+
 end

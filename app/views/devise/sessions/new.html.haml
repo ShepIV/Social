@@ -1,22 +1,29 @@
-%body.bg
-  .container
-    %h1.title.text-center login
-    .row.text-center
-      .main-login.main-center
-        = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+.container{style: 'margin-top:40px'}
+  .row
+    .col-sm-6.col-md-4.col-md-offset-4
+      .panel.panel-default
+        .panel-heading
+          %strong Sign in to continue
+        .panel-body
+          .row
+            .center-block
+              %img.profile-img{src: 'https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120'}/
+          .row.text-center
+            .col-sm-12.col-md-10.col-md-offset-1
+              = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
 
-          .field.text-center
-            = f.label :email
-            %br/
-            = f.email_field :email, autofocus: true
-          .field.text-center
-            = f.label :password
-            %br/
-            = f.password_field :password, autocomplete: "off"
-          - if devise_mapping.rememberable?
-            .field.text-center
-              = f.check_box :remember_me
-              = f.label :remember_me
-          .actions.text-center
-            = f.submit "Log in"
-            = render "devise/shared/links"
+                .field.text-center
+                  = f.label :email
+                  %br/
+                  = f.email_field :email, autofocus: true
+                .field.text-center
+                  = f.label :password
+                  %br/
+                  = f.password_field :password, autocomplete: 'off'
+                - if devise_mapping.rememberable?
+                  .field.text-center
+                    = f.check_box :remember_me
+                    = f.label :remember_me
+                .actions.text-center
+                  = f.submit 'Log in'
+                  = render 'devise/shared/links'
