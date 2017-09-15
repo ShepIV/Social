@@ -1,0 +1,26 @@
+.container
+  = link_to("Back to #{@user.profile.first_name} #{@user.profile.last_name}", user_path(@user), class: 'btn btn-primary btn-sm btn-hover pull-left fa fa-chevron-left')
+  .panel.panel-default
+    .panel-heading
+      = link_to("#{@post.author.profile.first_name} #{@post.author.profile.last_name}", user_path(@post.author))
+      .panel-image
+        = image_tag("#{@post.image.url}", class: 'panel-image-preview')
+        -#%img.panel-image-preview{src: "#{t.image.url}"}
+        %p= @post.text
+      .panel-footer.clearfix
+        .like_button{class: "post-like-#{@post.id}"}
+          = render 'posts/like_button', post: @post, user: @user
+        -#= link_to 'Delete', @post, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-primary btn-danger btn-hover pull-left'
+
+      .comments{id: "post-comments-#{@post.id}"}
+        = link_to 'Load more', user_post_comments_path(@user, @post, page: 2), remote: true, class: 'load-more'
+        .comments_block
+          - @post.comments.order(created_at: :asc).last(3).each do |comment|
+            = render 'posts/comments', comment: comment
+      .news
+        %h5 Add a comment:
+        = form_for [current_user, @post, @post.comments.build], remote: true do |f|
+          %p
+            = f.text_area :text
+          %p
+            = f.submit

@@ -1,0 +1,7 @@
+- if current_user.likes?(post)
+  = link_to unlikes_user_post_path(user, post), method: :post, remote: true, class: 'btn btn-warning btn-sm  pull-left' do
+    %i.fa.fa-thumbs-up
+- else
+  = link_to likes_user_post_path(user, post), method: :post,  remote: true, class: 'btn btn-warning btn-sm btn-hover pull-left' do
+    %i.fa.fa-thumbs-up
+= post.likers(User).count

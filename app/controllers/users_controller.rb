@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:index, :show, :edit, :update]
+  before_action :set_user, only: [:index, :show, :edit, :update, :follow, :unfollow]
   def index
     @users = User.all
   end
@@ -22,6 +22,23 @@ class UsersController < ApplicationController
         format.html { render :edit }
       end
     end
+  end
+
+  def follow
+    current_user.follow!(@user) # => This assumes you have a variable current_user who is authenticated
+    render :follow_button
+  end
+
+  def unfollow
+    current_user.unfollow!(@user)
+    render :follow_button
+  end
+
+
+private
+
+  def posts_params
+    @author = User.find(author_id)
   end
 
   def set_user

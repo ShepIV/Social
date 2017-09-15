@@ -1,0 +1,1 @@
+$(".comment_button.com-but-#{@post.id}").html("#{escape_javascript render(partial: 'posts/comment_block', locals: { post: @post, user: @user }) }")

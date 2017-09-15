@@ -1,0 +1,13 @@
+%body.bg
+  .container
+    .row
+      .main-login.main-center
+        = form_for @post, html: { multipart: true } do |f|
+          .field.text-center
+            = f.label :text
+            = f.text_area :text
+          .field.text-center
+            = f.label :image
+            = f.file_field :image
+          .actions
+            = f.submit 'Save'

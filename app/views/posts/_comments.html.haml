@@ -1,0 +1,18 @@
+.row.news-coment
+  .col-sm-1
+    %img= image_tag(comment.post.user.profile.avatar.url, class: 'image-post')
+  .col-sm-5
+    .panel.panel-default
+      .panel-heading
+        %strong= link_to("#{comment.post.user.profile.first_name} #{comment.post.user.profile.last_name}", user_path(comment.post.user))
+        %span.text-muted #{comment.created_at.strftime('%-d %B %Y, %H:%M:%S')}
+      .panel-body
+        = comment.text
+  .like_button_comments{class: "post-like-#{comment.id}"}
+    - if current_user.likes?(comment)
+      = link_to unlikes_user_post_comment_path(comment.post.user, comment.post, comment), method: :post, remote: true do
+        %i.fa.fa-heart
+    - else
+      = link_to likes_user_post_comment_path(comment.post.user, comment.post, comment), method: :post, remote: true do
+        %i.fa.fa-heart-o
+    = comment.likers(User).count

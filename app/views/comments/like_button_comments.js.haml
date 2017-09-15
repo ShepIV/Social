@@ -1,0 +1,1 @@
+$(".like_button_comments.post-like-#{@comment.id}").html("#{escape_javascript render(partial: 'comments/like_button_comments', locals: { user: current_user, post: @post, comment: @comment }) }")

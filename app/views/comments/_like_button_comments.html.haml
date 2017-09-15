@@ -1,0 +1,7 @@
+- if current_user.likes?(comment)
+  = link_to unlikes_user_post_comment_path(user, post, comment), method: :post, remote: true do
+    %i.fa.fa-heart
+- else
+  = link_to likes_user_post_comment_path(user, post, comment), method: :post, remote: true do
+    %i.fa.fa-heart-o
+= comment.likers(User).count

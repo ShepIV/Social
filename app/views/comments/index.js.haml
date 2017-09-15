@@ -1,0 +1,2 @@
+$("#post-comments-#{@post.id} .load-more").attr('href', "#{user_post_comments_path(@post, page: params[:page].to_i + 1)}");
+$("#post-comments-#{@post.id} .comments_block").prepend("#{escape_javascript render('comments/index', comments: @comments )}");

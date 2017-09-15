@@ -1,0 +1,2 @@
+$("#post-load-#{user.id} .load-post").attr('href', "#{user_post_path(@user, page: params[:page].to_i + 1)}");
+$("#post-load-#{user.id} .posts_block").prepend("#{escape_javascript render('users/posts', user: @user )}");
