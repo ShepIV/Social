@@ -1,0 +1,2 @@
+$('.load-post').attr('href', "#{user_posts_path(@user, page: params[:page].to_i + 1)}");
+$('.posts_block').append("#{escape_javascript render('posts/index', posts: @posts )}");

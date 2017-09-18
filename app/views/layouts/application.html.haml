@@ -12,11 +12,11 @@
         .navbar-header
           %a.navbar-brand{:href => "#"} WebSiteName
         %ul.nav.navbar-nav
-          %li.active
+          %li
             - if user_signed_in?
               %a= link_to 'profile', user_path(current_user.id)
           %li
-            %a{:href => "#"} Page 1
+            %a= link_to 'conversaton', user_conversations_path(current_user)
           %li
             %a{:href => "#"} Page 2
         %ul.nav.navbar-nav.navbar-right

@@ -1,0 +1,13 @@
+%li
+  .panel.panel-default{'data-conversation-id': "#{conversation.id}"}
+    .panel-heading
+      = link_to conversation.opposed_user(user).email, user_conversations_path(user, conversation), class: 'toggle-window'
+      = link_to 'x', close_user_conversation_path(user, conversation), class: 'btn btn-default btn-xs pull-right', remote: true, method: :post
+    .panel-body{style: 'display: none'}
+      .messages-list
+        %ul
+          = render 'conversations/conversation_content', messages: conversation.messages, user: user
+      = form_for [user,   conversation, conversation.messages.new], remote: true do |f|
+        = f.hidden_field :user_id, value: user.id
+        = f.text_area :body, class: 'form-control'
+        = f.submit 'Send', class: 'btn btn-success'

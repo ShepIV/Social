@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :set_user
   before_action :set_post, only: [:show, :edit, :likes, :unlikes]
   def index
-    @posts = Post.all
+    @posts = Post.order(created_at: :desc).page(params[:page]).per(3)
   end
 
   def new
@@ -17,6 +17,7 @@ class PostsController < ApplicationController
     respond_to do |format|
       if @post.save!
         format.html { redirect_to user_path(@user.id), notice: 'Post was successfully created.' }
+        format.js
       end
     end
   end
@@ -43,6 +44,8 @@ class PostsController < ApplicationController
     current_user.unlike!(@post)
     render :like_button
   end
+
+
   private
 
   def set_user

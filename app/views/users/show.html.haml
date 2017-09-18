@@ -44,4 +44,13 @@
       .row
         .col-xs-12
           %h2 Posts
-          = render 'posts', user: @user
+          .posts{id: "post-new-#{@user.id}"}
+            %h2 New post
+            = form_for [@user, @user.posted_posts.build], remote: true do |f|
+              .field
+                = f.text_area :text
+              .field
+                = f.file_field :image
+              .actions
+                = f.submit 'Save'
+      = render 'posts', user: @user

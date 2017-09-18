@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:index, :show, :edit, :update, :follow, :unfollow]
+  before_action :set_user, only: [:index, :show, :edit, :update, :follow, :unfollow, :load_posts]
   def index
     @users = User.all
   end
@@ -34,6 +34,9 @@ class UsersController < ApplicationController
     render :follow_button
   end
 
+  # def load_posts
+  #   @posts = Post.order(created_at: :desc).page(params[:page]).per(3)
+  # end
 
 private
 

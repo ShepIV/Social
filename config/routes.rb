@@ -6,7 +6,15 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :users, except: [:destroy, :create] do
-
+    member do
+      post :load_posts
+    end
+    resources :conversations, only: [:index, :create] do
+      resources :messages, only: [:create]
+      member do
+        post :close
+      end
+    end
     member do
       post :follow
       post :unfollow
