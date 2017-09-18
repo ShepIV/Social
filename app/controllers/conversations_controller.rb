@@ -1,14 +1,15 @@
 class ConversationsController < ApplicationController
 
-  def index
-    def index
-      session[:conversations] ||= []
 
-      @users = User.all.where.not(id: current_user)
-      @conversations = Conversation.includes(:recipient, :messages)
-                           .find(session[:conversations])
-    end
+  def index
+    session[:conversations] ||= []
+
+    @users = User.all.where.not(id: current_user)
+    @conversations = Conversation.includes(:recipient, :messages)
+                         .find(session[:conversations])
+
   end
+
 
   def create
     @conversation = Conversation.get(current_user.id, params[:user_id])

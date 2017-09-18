@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :comments
   root 'index#home'
 
   devise_for :users
@@ -25,7 +24,7 @@ Rails.application.routes.draw do
         post :likes
         post :unlikes
       end
-      resources :comments do
+      resources :comments, except: [:edit] do
         member do
           post :likes
           post :unlikes

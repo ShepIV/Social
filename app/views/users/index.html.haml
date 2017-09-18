@@ -1,5 +1,6 @@
 %h2 welcome
 
-# all users
-# = @users.each do |user|
-#   = link_to("#{user.profile.first_name} #{user.profile.last_name}", user_path(user))
+all users
+- @users.each do |user|
+  %br
+  = link_to("#{user.profile.first_name} #{user.profile.last_name}", user_path(user))

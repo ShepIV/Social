@@ -12,11 +12,13 @@
             - if @user.followers(User).count == 0
               %h2 Not friends
             - else
-              - @user.followers(User).first(6).each do |user|
-                .col-xs-4.block_friends
-                  = link_to(image_tag("#{user.profile.avatar.url}", class: 'show-img'), user_path(user))
-                  %br
-                  = link_to("#{user.profile.first_name}", user_path(user))
+              .text-center Friends
+              - @user.followees(User).first(6).each do |user|
+                - if user.follows?(@user)
+                  .col-xs-4.block_friends
+                    = link_to(image_tag("#{user.profile.avatar.url}", class: 'show-img'), user_path(user))
+                    %br
+                    = link_to("#{user.profile.first_name}", user_path(user))
     .col-xs-12.col-sm-8
       %ul.list-group
         %li.list-group-item #{@user.profile.first_name}

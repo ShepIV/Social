@@ -10,15 +10,17 @@
     %nav.navbar.navbar-inverse
       .container-fluid
         .navbar-header
-          %a.navbar-brand{:href => "#"} WebSiteName
+          %a= link_to 'Social', users_path, class: 'navbar-brand'
+          -#%a.navbar-brand{:href => "#"} WebSiteName
         %ul.nav.navbar-nav
           %li
             - if user_signed_in?
-              %a= link_to 'profile', user_path(current_user.id)
+              = link_to 'profile', user_path(current_user.id), class: 'nav navbar-nav'
           %li
-            %a= link_to 'conversaton', user_conversations_path(current_user)
-          %li
-            %a{:href => "#"} Page 2
+            - if current_user
+              = link_to 'conversaton', user_conversations_path(current_user), class: 'nav navbar-nav'
+          -## %li
+          -##   %a{:href => "#"} Page 2
         %ul.nav.navbar-nav.navbar-right
           - if user_signed_in?
             %li
