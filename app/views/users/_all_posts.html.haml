@@ -1,19 +1,19 @@
 .panel.panel-default
-  .panel-heading{href: user_posts_path(@user, post)}
+  .panel-heading{href: user_posts_path(user)}
     = link_to("#{post.author.profile.first_name} #{post.author.profile.last_name}", user_path(post.author))
     .panel-image
       - if post.image != 0
-        = link_to(image_tag("#{post.image.url}", class: 'panel-image-preview'), user_post_path(post.user, post))
+        = link_to(image_tag("#{post.image.url}", class: 'panel-image-preview'), user_post_path(user, post))
       %p= post.text
     .panel-footer.clearfix
       -#%a.btn.comsys.btn-success.btn-sm.btn-hover.pull-left
       -#  Cmt
       -#  %span.fa.fa-comment
       .like_button{class: "post-like-#{post.id}"}
-        = render 'posts/like_button', post: post, user: @user
+        = render 'posts/like_button', post: post, user: user
     -#- if post.comments.count != 0
     .comments{id: "post-comments-#{post.id}"}
-      = link_to 'Load more', user_post_comments_path(@user, post, page: 2), remote: true, class: 'load-more'
+      = link_to 'Load more', user_post_comments_path(user, post, page: 2), remote: true, class: 'load-more'
       .comments_block
         - post.comments.order(created_at: :asc).last(3).each do |comment|
           = render 'posts/comments', comment: comment

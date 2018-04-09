@@ -2,4 +2,4 @@
   - user.posts.order(created_at: :desc).first(3).each do |post|
     = render 'users/all_posts', user: user, post: post
 .posts_load{id: "post-load-#{user.id}"}
-  = link_to 'load more', user_posts_path(@user, page: 2), remote: true, class: 'load-post'
+  = link_to 'load more', user_posts_path(user, page: 2), remote: true, class: 'load-post'

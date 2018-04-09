@@ -1,12 +1,13 @@
 class User < ApplicationRecord
-
   devise :database_authenticatable,
          :registerable,
          :recoverable,
          :rememberable,
          :validatable
 
+
   has_one :profile, dependent: :destroy
+  delegate :first_name, :last_name, :avatar, :interests, :bd, :telephone, :about, to: :profile, prefix: true
   has_many :posts, dependent: :destroy
   has_many :posted_posts, dependent: :destroy, class_name: 'Post', foreign_key: 'author_id'
   has_many :messages

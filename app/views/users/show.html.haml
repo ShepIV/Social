@@ -4,7 +4,7 @@
       .row
         .col-lg-12
           .col-xs-12
-            = image_tag("#{@user.profile.avatar.url}", class: 'block-img')
+            = image_tag("#{@user.profile_avatar.url}", class: 'block-img')
             -#= @user.followers(User).where(@user.follows(User)).count
       .row.panel_friends
         .col-xs-12.panel.panel-default
@@ -16,22 +16,22 @@
               - @user.followees(User).first(6).each do |user|
                 - if user.follows?(@user)
                   .col-xs-4.block_friends
-                    = link_to(image_tag("#{user.profile.avatar.url}", class: 'show-img'), user_path(user))
+                    = link_to(image_tag("#{user.profile_avatar.url}", class: 'show-img'), user_path(user))
                     %br
-                    = link_to("#{user.profile.first_name}", user_path(user))
+                    = link_to("#{user.profile_first_name}", user_path(user))
     .col-xs-12.col-sm-8
       %ul.list-group
-        %li.list-group-item #{@user.profile.first_name}
-        %li.list-group-item #{@user.profile.last_name}
+        %li.list-group-item #{@user.profile_first_name}
+        %li.list-group-item #{@user.profile_last_name}
         %li.list-group-item
           %i.glyphicon.glyphicon-heart
-          #{@user.profile.interests}
+          #{@user.profile_interests}
         %li.list-group-item
           %i.glyphicon.glyphicon-calendar
-          #{@user.profile.bd}
+          #{@user.profile_bd}
         %li.list-group-item
           %i.fa.fa-phone
-          #{@user.profile.telephone}
+          #{@user.profile_telephone}
         %li.list-group-item
           %i.fa.fa-envelope
           #{@user.email}
@@ -41,13 +41,14 @@
           .follow-unfollow
             = render 'users/follow_button', user: @user
       %h2 About Me
-      .blockquote #{@user.profile.about}
+      .blockquote #{@user.profile_about}
 
       .row
         .col-xs-12
           %h2 Posts
           .posts{id: "post-new-#{@user.id}"}
             %h2 New post
+
             = form_for [@user, @user.posted_posts.build], remote: true do |f|
               .field
                 = f.text_area :text

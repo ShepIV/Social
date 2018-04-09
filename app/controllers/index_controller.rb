@@ -1,7 +1,6 @@
 class IndexController < ApplicationController
   def home
-    if current_user
-      redirect_to current_user
-    end
+    return unless current_user
+    redirect_to current_user
   end
 end

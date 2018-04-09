@@ -3,4 +3,4 @@
 all users
 - @users.each do |user|
   %br
-  = link_to("#{user.profile.first_name} #{user.profile.last_name}", user_path(user))
+  = link_to("#{user.profile_first_name} #{user.profile_last_name}", user_path(user))

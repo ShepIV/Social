@@ -1,5 +1,5 @@
 .container
-  = link_to("Back to #{@user.profile.first_name} #{@user.profile.last_name}", user_path(@user), class: 'btn btn-primary btn-sm btn-hover pull-left fa fa-chevron-left')
+  = link_to("Back to #{@user.profile_first_name} #{@user.profile_last_name}", user_path(@user), class: 'btn btn-primary btn-sm btn-hover pull-left fa fa-chevron-left')
   .panel.panel-default
     .panel-heading
       = link_to("#{@post.author.profile.first_name} #{@post.author.profile.last_name}", user_path(@post.author))
